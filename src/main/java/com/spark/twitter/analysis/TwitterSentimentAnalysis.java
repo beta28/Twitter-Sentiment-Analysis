@@ -79,7 +79,6 @@ public class TwitterSentimentAnalysis {
         });
 
         //count and score positive and negative tweets
-
         JavaDStream<Tuple4<Long, String, Float, Float>> scoreTweets = tweetsFiltered.map(tweet -> {
             float posCount = 0;
             Set<String> positiveWords = PositiveWordCache.getInstance().getPositiveWordsSet();
