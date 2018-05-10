@@ -99,7 +99,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.spark.twitter.analysis</mainClass>
+                            <mainClass>com.spark.twitter.analysis.TwitterSentimentAnalysis</mainClass>
                             <classpathPrefix>dependency-jars/</classpathPrefix>
                         </manifest>
                     </archive>
