@@ -1,10 +1,1 @@
-rackspace
-hadoop
-hadoopworld
-spark
-strata
-nyc
-twittersentimentdemo
-bigdata
-onmetal
-cloudbigdata
+donald

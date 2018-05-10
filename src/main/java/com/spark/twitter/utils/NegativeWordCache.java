@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class NegativeWordCache {
 
     private static final Logger LOG = LoggerFactory.getLogger(NegativeWordCache.class);
-    private static final String NEGATIVE_WORD_FILE_PATH = "src/resources/neg-words.txt";
+    private static final String NEGATIVE_WORD_FILE_PATH = "src/main/resources/neg-words.txt";
     private static NegativeWordCache instance;
 
     private Set<String> negativeWordsSet;
@@ -69,7 +69,7 @@ public class NegativeWordCache {
         try (Stream<String> stream = Files.lines(Paths.get(NEGATIVE_WORD_FILE_PATH))) {
             stream.forEach(word -> negativeWordsSet.add(word));
         } catch (IOException e) {
-            throw new TwitterSentimentException("Exception while loading Negative words");
+            throw new TwitterSentimentException("Exception while loading Negative words",e);
         }
     }
 }

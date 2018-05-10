@@ -31,7 +31,7 @@ public class TwitterSentimentAnalysis {
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(TwitterSentimentAnalysis.class);
     private static final String OUTPUT_FILE = "tweet-sentiment.txt";
 
-    public static void main(String[] args) throws TwitterSentimentException {
+    public static void main(String[] args) throws TwitterSentimentException, InterruptedException {
         //setting the logger off for spark
         Logger.getLogger("org").setLevel(Level.OFF);
 
@@ -39,7 +39,9 @@ public class TwitterSentimentAnalysis {
         TwitterProperties.setProperties();
 
         //spark streaming context
-        JavaStreamingContext javaStreamingContext = new JavaStreamingContext(new SparkConf().setAppName("Twitter Sentiment Analysis"),
+        JavaStreamingContext javaStreamingContext = new JavaStreamingContext(new SparkConf()
+                .setAppName("Twitter Sentiment Analysis")
+                .setMaster("local"),
                 new Duration(1000));
 
         //get set of keywords for tweet analysis
@@ -119,5 +121,9 @@ public class TwitterSentimentAnalysis {
                 tweet.saveAsTextFile(OUTPUT_FILE);
             }
         });
+
+        result.print();
+        javaStreamingContext.start();
+        javaStreamingContext.awaitTermination();
     }
 }

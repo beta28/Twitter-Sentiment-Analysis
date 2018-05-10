@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class StopWordCache {
 
     private static final Logger LOG = LoggerFactory.getLogger(StopWordCache.class);
-    private static final String STOP_WORD_FILE_PATH = "src/resources/stop-words.txt";
+    private static final String STOP_WORD_FILE_PATH = "src/main/resources/stop-words.txt";
     private static StopWordCache instance;
 
     private Set<String> stopWordsSet;
@@ -69,7 +69,7 @@ public class StopWordCache {
         try (Stream<String> stream = Files.lines(Paths.get(STOP_WORD_FILE_PATH))) {
             stream.forEach(word -> stopWordsSet.add(word));
         } catch (IOException e) {
-            throw new TwitterSentimentException("Exception while loading stop words");
+            throw new TwitterSentimentException("Exception while loading stop words",e);
         }
     }
 }

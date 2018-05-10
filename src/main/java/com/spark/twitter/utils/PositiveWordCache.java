@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class PositiveWordCache {
 
     private static final Logger LOG = LoggerFactory.getLogger(PositiveWordCache.class);
-    private static final String POSITIVE_WORD_FILE_PATH = "src/resources/pos-words.txt";
+    private static final String POSITIVE_WORD_FILE_PATH = "src/main/resources/pos-words.txt";
     private static PositiveWordCache instance;
 
     private Set<String> positiveWordsSet;
@@ -69,7 +69,7 @@ public class PositiveWordCache {
         try (Stream<String> stream = Files.lines(Paths.get(POSITIVE_WORD_FILE_PATH))) {
             stream.forEach(word -> positiveWordsSet.add(word));
         } catch (IOException e) {
-            throw new TwitterSentimentException("Exception while loading Positive words");
+            throw new TwitterSentimentException("Exception while loading Positive words",e);
         }
     }
 }

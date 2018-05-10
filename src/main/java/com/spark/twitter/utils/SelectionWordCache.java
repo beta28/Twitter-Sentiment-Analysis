@@ -21,7 +21,7 @@ import java.util.stream.Stream;
 public class SelectionWordCache {
 
     private static final Logger LOG = LoggerFactory.getLogger(SelectionWordCache.class);
-    private static final String SELECTION_WORD_FILE_PATH = "src/resources/selection.txt";
+    private static final String SELECTION_WORD_FILE_PATH = "src/main/resources/selection.txt";
     private static SelectionWordCache instance;
 
     private Set<String> selectionWordsSet;
@@ -69,7 +69,7 @@ public class SelectionWordCache {
         try (Stream<String> stream = Files.lines(Paths.get(SELECTION_WORD_FILE_PATH))) {
             stream.forEach(word -> selectionWordsSet.add(word));
         } catch (IOException e) {
-            throw new TwitterSentimentException("Exception while loading selection words");
+            throw new TwitterSentimentException("Exception while loading selection words",e);
         }
     }
 }
